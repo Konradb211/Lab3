@@ -2,14 +2,14 @@
 function show_help() {
   echo "Użycie: skrypt.sh [OPCJE]"
   echo "OPCJE:"
-  echo "--date  wyświetla dzisiejszą datę"
-  echo "--logs  [liczba] tworzy [liczba] plików log zawierających nazwę pliku, nazwę skryptu i datę"
-  echo "--help  wyświetla tę pomoc"
+  echo "-d, --date  wyświetla dzisiejszą datę"
+  echo "-l, --logs  [liczba] tworzy [liczba] plików log zawierających nazwę pliku, nazwę skryptu i datę"
+  echo "-h, --help  wyświetla tę pomoc"
 }
 
-if [[ "$1" == "--date" ]]; then
+if [[ "$1" == "-d" || "$1" == "--date" ]]; then
   date
-elif [[ "$1" == "--logs" ]]; then
+elif [[ "$1" == "-l" || "$1" == "--logs" ]]; then
   if [ -z "$2" ]; then
     num_files=100
   else
@@ -21,9 +21,11 @@ elif [[ "$1" == "--logs" ]]; then
     echo "Nazwa skryptu: skrypt.sh" >>log$i.txt
     echo "Data utworzenia: $(date)" >>log$i.txt
   done
-elif [[ "$1" == "--help" ]]; then
+elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
   show_help
 else
-  echo "Nieznana opcja: $1. Użyj opcji --help, aby uzyskać więcej informacji."
+  echo "Nieznana opcja: $1. Użyj opcji -h lub --help, aby uzyskać więcej informacji."
   exit 1
 fi
+
+
